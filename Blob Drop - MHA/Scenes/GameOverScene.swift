@@ -13,6 +13,18 @@ class GameOverScene: SKScene {
     
     let tapToPlayAgain = SKLabelNode(fontNamed: "Caviar Dreams")
     
+    let backToMainMenu = SKLabelNode(fontNamed: "Caviar Dreams")
+    
+    func createLabel(label: String) -> SKLabelNode {
+        let backToMainMenu = SKLabelNode(fontNamed: "Caviar Dreams")
+        backToMainMenu.text = label
+        backToMainMenu.fontSize = 100
+        backToMainMenu.fontColor = SKColor.darkGray
+        backToMainMenu.position = CGPoint(x:self.size.width/2 ,y: self.size.height/15)
+        backToMainMenu.zPosition = 1
+        return backToMainMenu
+    }
+    
     override func didMove(to view: SKView) {
         
         let gameOverbackground = SKSpriteNode(imageNamed: "gameBackground")
@@ -51,26 +63,34 @@ class GameOverScene: SKScene {
         finalHighScoreLabel.zPosition = 1
         self.addChild(finalHighScoreLabel)
         
-        tapToPlayAgain.text = "Tap To Play Again"
+        tapToPlayAgain.text = "Play Again"
         tapToPlayAgain.fontSize = 100
         tapToPlayAgain.fontColor = SKColor.darkGray
-        tapToPlayAgain.position = CGPoint(x: self.size.width/2, y: self.size.height/8)
+        tapToPlayAgain.position = CGPoint(x: self.size.width/2, y: self.size.height/7)
         tapToPlayAgain.zPosition = 1
         self.addChild(tapToPlayAgain)
         
-        let backToMainMenu = createLabel(label: "Back to Main Menu")
-        backToMainMenu.position = CGPoint(x:self.size.width/2 ,y: self.size.height/15)
-        self.addChild(backToMainMenu)
-    }
-    func createLabel(label: String) -> SKLabelNode {
-        let backToMainMenu = SKLabelNode(fontNamed: "Caviar Dreams")
-        backToMainMenu.text = label
+        backToMainMenu.text = "Main Menu"
         backToMainMenu.fontSize = 100
         backToMainMenu.fontColor = SKColor.darkGray
-        backToMainMenu.position = CGPoint(x:self.size.width/2 ,y: self.size.height/15)
+        backToMainMenu.position = CGPoint(x:self.size.width/2 ,y: self.size.height/18)
         backToMainMenu.zPosition = 1
-        return backToMainMenu
+        self.addChild(backToMainMenu)
+        
+        func createLabel(label: String) -> SKLabelNode {
+            let backToMainMenu = SKLabelNode(fontNamed: "Caviar Dreams")
+            backToMainMenu.text = label
+            backToMainMenu.fontSize = 100
+            backToMainMenu.fontColor = SKColor.darkGray
+            backToMainMenu.position = CGPoint(x:self.size.width/2 ,y: self.size.height/10)
+            backToMainMenu.zPosition = 1
+            return backToMainMenu
+            
+            let invisibletapToPlayAgain = SKSpriteNode(imageNamed: "gameBackground")
+            
+        }
     }
+    //moo dfghjkgfdfgh
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     
@@ -80,11 +100,20 @@ class GameOverScene: SKScene {
         
         if tapToPlayAgain.contains(pointOfTouch){
             
-            let sceneToMoveTo = GameScene(size: self.size)
-            sceneToMoveTo.scaleMode = self.scaleMode
+            let sceneToMoveTo1 = GameScene(size: self.size)
+            sceneToMoveTo1.scaleMode = self.scaleMode
             let myTransition = SKTransition.fade(withDuration: 0.5)
-            self.view?.presentScene(sceneToMoveTo, transition: myTransition)
+            self.view?.presentScene(sceneToMoveTo1, transition: myTransition)
             
+            
+        }
+        
+        if backToMainMenu.contains(pointOfTouch){
+            
+            let sceneToMoveTo2 = MainMenuScene(size: self.size)
+            sceneToMoveTo2.scaleMode = self.scaleMode
+            let myTransition = SKTransition.fade(withDuration: 0.5)
+            self.view?.presentScene(sceneToMoveTo2, transition: myTransition)
             
         }
     

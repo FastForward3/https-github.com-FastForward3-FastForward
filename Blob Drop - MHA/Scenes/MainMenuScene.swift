@@ -74,6 +74,7 @@ class MainMenuScene: SKScene {
         howToPlay3.fontSize = 68
         howToPlay3.position = CGPoint(x: self.size.width/2, y: self.size.height/19.3)
         self.addChild(howToPlay3)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
